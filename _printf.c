@@ -10,5 +10,12 @@
  */
 int _printf(const char *format, ...)
 {
+	va_list ap;
 
+	va_start(ap, format);
+
+
+
+	return ();
+	va_end(ap);
 }
