@@ -12,10 +12,10 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int len = 0;
-	symbols_t symbol_func[] = {{"s", }
-				{"c", }
-				{"i", }
-				{"d", }
+	symbols_t symbol_func[] = {{"s", _sprintf}
+				{"c", _cprintf}
+				{"i", _iprintf}
+				{"d", _dprintf}
 				{NULL, NULL}
 	};
 
@@ -40,9 +40,15 @@ int _printf(const char *format, ...)
 				if (format[i + 1] == symbol_func[j].symbol[0])
 				{
 					symbol_func.func(ap);
-					len++;
+					len /*m7taga a increment el length sould i add it as parameter fy el
+					      fn bt3t kol whd lw string a number asl char keda keda hy add 1*/
+					break;
 				}
 			}
+
+			/* tb lw 3ndy % bs mfish match ll specifiers htb3 brdo bs el %
+			 * httb3 azay men 8ir \% hwa msh hy2raha aslun i think*/
+
 		}
 	}
 
