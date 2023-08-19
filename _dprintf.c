@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _sprintf - a function to print a string
+ * _dprintf - a function to print a decimal (base 10) number
  * @ap: to pass argument passed to _printf
  *
  * Return: Nothing.
