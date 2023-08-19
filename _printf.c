@@ -12,8 +12,11 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int len = 0;
-	symbols_t symbol_func[] = {{"\%s", }
-				{"\%c", }
+	symbols_t symbol_func[] = {{"s", }
+				{"c", }
+				{"i", }
+				{"d", }
+				{NULL, NULL}
 	};
 
 	len = strlen(format);
@@ -27,8 +30,21 @@ int _printf(const char *format, ...)
 	 * len will be increminted with the len of format then the len of
 	 * any other variable to be printed 
 	 * len = strlen(format) + strlen(variables)*/
-
-
+	
+	for (i = 0; format[i]; i++)
+	{
+		if (format[i] == '%' && format[i + 1])
+		{
+			for (j = 0; symbol_func[j].symbol; j++)
+			{
+				if (format[i + 1] == symbol_func[j].symbol[0])
+				{
+					symbol_func.func(ap);
+					len++;
+				}
+			}
+		}
+	}
 
 	return (len);
 	va_end(ap);

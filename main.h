@@ -4,6 +4,11 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+/**
+ * stuct symbols_handling - 
+ * @symbol:
+ * @func:
+ */
 typedef struct symbols_handling{
 	
 	char *symbol;
