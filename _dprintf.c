@@ -6,9 +6,24 @@
  *
  * Return: Nothing.
  */
-void _dprintf(va_list ap)
+void _dprintf(va_list ap, int len)
 {
+	char *dec = va_arg(ap,char *);
+	int i;
+
 	if(!ap)
 		return;
+	if (dec[0] != '0' && dec[1])
+	{
+		for (i = 0; dec ; i++)
+		{
+			write(1, dec[i], 1);
+		}
+	}
+
+	else
+	{
+
+	}
 
 }
