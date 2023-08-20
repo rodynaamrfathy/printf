@@ -18,12 +18,16 @@ void _dprintf(va_list ap, int len)
 		for (i = 0; dec ; i++)
 		{
 			write(1, dec[i], 1);
+			len++;
 		}
 	}
 
 	else
 	{
-
+		for (i = 1; dec ; i++)
+		{
+			/*handels octal cass*/
+		}
 	}
 
 }
