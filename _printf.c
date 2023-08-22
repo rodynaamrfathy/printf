@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdarg.h>
 #include <string.h>
 
 /**
@@ -11,12 +12,13 @@
 int _printf(const char *format, ...)
 {
 	va_list ap;
-	int len = 0;
-	symbols_t symbol_func[] = {{"s", _sprintf}
-				{"c", _cprintf}
-				{"i", _iprintf}
-				{"d", _dprintf}
-				{NULL, NULL}
+	int i, j, len = 0;
+	symbols_t symbol_func[] = {{"s", _sprintf},
+				{"c", _cprintf},
+				{"i", _iprintf},
+				{"d", _dprintf},
+				{"%", _precentageprintf},
+				{NULL, NULL},
 	};
 
 	len = strlen(format);
@@ -39,19 +41,19 @@ int _printf(const char *format, ...)
 			{
 				if (format[i + 1] == symbol_func[j].symbol[0])
 				{
-					symbol_func.func(ap);
-					len /*m7taga a increment el length sould i add it as parameter fy el
-					      fn bt3t kol whd lw string a number asl char keda keda hy add 1*/
+					symbol_func.func(ap, len);
 					break;
 				}
 			}
+			
+			write(1,&format[i],1);
 
 			/* tb lw 3ndy % bs mfish match ll specifiers htb3 brdo bs el %
 			 * httb3 azay men 8ir \% hwa msh hy2raha aslun i think*/
 
 		}
 	}
-
-	return (len);
+	
 	va_end(ap);
+	return (len);
 }

@@ -8,9 +8,13 @@
  */
 void _cprintf(va_list ap, int len)
 {
+	char character;
+
 	if(!ap)
 		return;
-	write(1, va_arg(ap, char), 1);
+
+	character = va_arg(ap, char);
+	write(1, character, 1);
 	len++;
 
 }

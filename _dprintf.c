@@ -8,11 +8,15 @@
  */
 void _dprintf(va_list ap, int len)
 {
-	char *dec = va_arg(ap,char *);
+	char *dec;
 	int i;
 
 	if(!ap)
 		return;
+	for ()
+	{
+		dec[i] = va_arg(ap, char)
+	}
 	if (dec[0] != '0' && dec[1])
 	{
 		for (i = 0; dec ; i++)
