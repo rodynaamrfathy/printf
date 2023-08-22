@@ -18,7 +18,7 @@ void _iprintf(va_list ap, int len)
 	{
 		for (i = 1; integer; i++)
 		{
-			write(1, integer[i], 1);
+			write(1, &integer[i], 1);
 			len++;
 		}
 	}
@@ -27,7 +27,7 @@ void _iprintf(va_list ap, int len)
 	{
 		for (i = 1; integer; i++)
 		{
-			write(1, integer[i], 1);i
+			write(1, &integer[i], 1);
 			len++;
 		}
 	}

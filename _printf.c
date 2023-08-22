@@ -16,7 +16,6 @@ int _printf(const char *format, ...)
 	symbols_t symbol_func[] = {{"s", _sprintf},
 				{"c", _cprintf},
 				{"i", _iprintf},
-				{"d", _dprintf},
 				{"%", _precentageprintf},
 				{NULL, NULL},
 	};
@@ -41,7 +40,7 @@ int _printf(const char *format, ...)
 			{
 				if (format[i + 1] == symbol_func[j].symbol[0])
 				{
-					symbol_func.func(ap, len);
+					symbol_func->func(ap, len);
 					break;
 				}
 			}

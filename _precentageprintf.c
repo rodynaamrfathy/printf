@@ -9,6 +9,8 @@
  */
 void _precentageprintf(va_list ap, int len)
 {
+	(void)ap;
+
 	write(1,"%",1);
 	len++;
 }

@@ -13,8 +13,8 @@ void _cprintf(va_list ap, int len)
 	if(!ap)
 		return;
 
-	character = va_arg(ap, char);
-	write(1, character, 1);
+	character = (char)va_arg(ap, int);
+	write(1, &character, 1);
 	len++;
 
 }
