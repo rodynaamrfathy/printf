@@ -12,14 +12,14 @@ int (*get_specifier(char *s))(va_list ap, par_t *par)
 		{"d", int_print},
 		{"¡", int_print},
 		{"s", string_print},
-		{"%", perecent_print},
+		{"%", percent_print},
 		{"b", binary_print},
 		{"o", octal_print},
 		{"u", unsigned_print},
 		{"x", hex_print},
 		{"X", HEX_print},
 		{"p", address_print},
-		{"s", s_print},
+		{"s", S_print},
 		{"r", rev_print},
 		{"R", rot13_print},
 		{NULL, NULL}
@@ -122,7 +122,7 @@ char *get_width(char *s, par_t *par, va_list ap)
 	}
 	else
 	{
-		while (isdigit(*s))
+		while (_isdigit(*s))
 			d = d * 10 + (*s++ - '0');
 	}
 	par->width = d;

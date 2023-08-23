@@ -5,14 +5,14 @@
 * @ap: the argument pointer
 * Return: void
 */
-void in_params(par_t *par, va_list ap);
+void in_params(par_t *par, va_list ap)
 {
 	par->unsign = 0;
 	par->plus_flag = 0;
-	params->space_flag = 0;
+	par->space_flag = 0;
 	par->hashtag_flag = 0;
 	par->zero_flag = 0;
-	params->minus_flag = 0;
+	par->minus_flag = 0;
 	par->width = 0;
 	par->precision = UINT_MAX;
 	par->high_modifier = 0;

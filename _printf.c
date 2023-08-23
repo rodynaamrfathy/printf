@@ -19,7 +19,7 @@ if (format[0] == '%' && format[1] == ' ' && !format[2])
 	return (-1);
 for (p = (char *)format; *p; p++)
 {
-	in_params(&par, ap)
+	in_params(&par, ap);
 	if (*p != '%')
 	{
 		sum += _putchar(*p);
@@ -29,12 +29,14 @@ for (p = (char *)format; *p; p++)
 	p++;
 	while (get_flag(p, &par))
 	{
-		p++
+		p++;
 	}
 	p = get_width(p, &par, ap);
 	p = get_precision(p, &par, ap);
-	if (get_modifier(p, &par);
+	if (get_modifier(p, &par))
+	{
 		p++;
+	}
 	if (!get_specifier(p))
 		sum += from_to_print(start, p, par.low_modifier
 		|| par.high_modifier ? p - 1 : 0);

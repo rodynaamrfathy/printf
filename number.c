@@ -22,7 +22,7 @@ char *convert(long int num, int base, int flags, par_t *par)
 		n = -num;
 		sign = '-';
 	}
-	arr = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
+	arr = flags & CON_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
 	ptr = &buf[49];
 	*ptr = '\0';
 	do {
@@ -51,7 +51,7 @@ int unsigned_print(va_list ap, par_t *par)
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
 	par->unsign = 1;
-	return (number_print(convert(l, 10, CONVERT_UNSIGNED, par), par));
+	return (number_print(convert(l, 10, CON_UNSIGNED, par), par));
 }
 
 /**
@@ -67,7 +67,7 @@ int address_print(va_list ap, par_t *par)
 
 	if (!r)
 		return (_put("(nil)"));
-	str = convert(r, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, par);
+	str = convert(r, 16, CONVERT_UNSIGNED | CON_LOWERCASE, par);
 	*--str = 'x';
 	*--str = '0';
 	return (number_print(str, par));
