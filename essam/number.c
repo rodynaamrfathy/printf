@@ -17,7 +17,7 @@ char *convert(long int num, int base, int flags, par_t *par)
 	unsigned long n = num;
 	(void)par;
 
-	if (!(flags & CONVERT_UNSIGNED) && num < 0)
+	if (!(flags & CON_UNSIGNED) && num < 0)
 	{
 		n = -num;
 		sign = '-';
@@ -67,7 +67,7 @@ int address_print(va_list ap, par_t *par)
 
 	if (!r)
 		return (_put("(nil)"));
-	str = convert(r, 16, CONVERT_UNSIGNED | CON_LOWERCASE, par);
+	str = convert(r, 16, CON_UNSIGNED | CON_LOWERCASE, par);
 	*--str = 'x';
 	*--str = '0';
 	return (number_print(str, par));

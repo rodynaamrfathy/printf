@@ -1,50 +1,112 @@
-#include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
 
-/**
-* _printf - prints anything
-* @format: format string
-* Return: number of bytes printed
-*/
+#define MAX_INT_LENGTH 12
+#define MAX_BIN_LENGTH 33
+
 int _printf(const char *format, ...)
 {
-int sum = 0;
-va_list ap;
-char *p, *start;
+    va_list args;
+    va_start(args, format);
 
-par_t par = PARAMS_IN;
-va_start(ap, format);
-if (!format || (format[0] == '%' && !format[1]))
-	return (-1);
-if (format[0] == '%' && format[1] == ' ' && !format[2])
-	return (-1);
-for (p = (char *)format; *p; p++)
-{
-	in_params(&par, ap);
-	if (*p != '%')
-	{
-		sum += _putchar(*p);
-		continue;
-	}
-	start = p;
-	p++;
-	while (get_flag(p, &par))
-	{
-		p++;
-	}
-	p = get_width(p, &par, ap);
-	p = get_precision(p, &par, ap);
-	if (get_modifier(p, &par))
-	{
-		p++;
-	}
-	if (!get_specifier(p))
-		sum += from_to_print(start, p, par.low_modifier
-		|| par.high_modifier ? p - 1 : 0);
-	else
-		sum += get_fun_print(p, ap, &par);
-}
+    int chars_printed = 0;
+    char c;
 
-_putchar(BUFFER_FLUSH);
-va_end(ap);
-return (sum);
+    while (*format)
+    {
+        if (*format == '%')
+        {
+            format++;
+            if (*format == 'c')
+            {
+                c = va_arg(args, int);
+                write(1, &c, 1);
+                chars_printed++;
+            }
+            else if (*format == 's')
+            {
+                char *str = va_arg(args, char*);
+                while (*str)
+                {
+                    write(1, str, 1);
+                    str++;
+                    chars_printed++;
+                }
+            }
+            else if (*format == '%')
+            {
+                write(1, "%", 1);
+                chars_printed++;
+            }
+            else if (*format == 'd' || *format == 'i')
+            {
+                int num = va_arg(args, int);
+                char num_str[MAX_INT_LENGTH];
+                // Convert num to string using your custom function
+                // ...
+                // Print the string
+                write(1, num_str, strlen(num_str));
+                chars_printed += strlen(num_str);
+            }
+            else if (*format == 'b')
+            {
+                unsigned int num = va_arg(args, unsigned int);
+                char bin_str[MAX_BIN_LENGTH];
+                // Convert num to binary string using your custom function
+                // ...
+                // Print the string
+                write(1, bin_str, strlen(bin_str));
+                chars_printed += strlen(bin_str);
+            }
+            else if (*format == 'u')
+            {
+                unsigned int num = va_arg(args, unsigned int);
+                // Convert and print num as unsigned decimal
+            }
+            else if (*format == 'o')
+            {
+                unsigned int num = va_arg(args, unsigned int);
+                // Convert and print num as octal
+            }
+            else if (*format == 'x' || *format == 'X')
+            {
+                unsigned int num = va_arg(args, unsigned int);
+                // Convert and print num as lowercase/uppercase hexadecimal
+            }
+            else if (*format == 'S')
+            {
+                char *str = va_arg(args, char*);
+                while (*str)
+                {
+                    if (*str >= 32 && *str < 127)
+                    {
+                        write(1, str, 1);
+                        chars_printed++;
+                    }
+                    else
+                    {
+                        char hex[5];
+                        snprintf(hex, sizeof(hex), "\\x%02X", (unsigned char)(*str));
+                        write(1, hex, strlen(hex));
+                        chars_printed += strlen(hex);
+                    }
+                    str++;
+                }
+            }
+            else
+            {
+                write(1, format - 1, 2); // Print the % and the next character
+                chars_printed += 2;
+            }
+        }
+        else
+        {
+            write(1, format, 1);
+            chars_printed++;
+        }
+        format++;
+    }
+
+    va_end(args);
+    return chars_printed;
 }

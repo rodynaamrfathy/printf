@@ -48,7 +48,7 @@ int HEX_print(va_list ap, par_t *par)
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
 
-	str = convert(l, 16, CONVERT_UNSIGNED, par);
+	str = convert(l, 16, CON_UNSIGNED, par);
 	if (par->hashtag_flag && l)
 	{
 		*--str = 'X';
@@ -94,7 +94,7 @@ int octal_print(va_list ap, par_t *par)
 		l = (unsigned short int)va_arg(ap, unsigned int);
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
-	str = convert(l, 8, CONVERT_UNSIGNED, par);
+	str = convert(l, 8, CON_UNSIGNED, par);
 
 	if (par->hashtag_flag && l)
 		*--str = '0';
