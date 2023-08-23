@@ -12,7 +12,10 @@
 #define NULL_str "(null)"
 #define PARAMS_IN {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 #define CON_LOWERCASE   1
+#define CONVERT_LOWERCASE   1
 #define con_uppercase   2
+#define CON_UNSIGNED 2
+#define CONVERT_UNSIGNED 2
 
 /**
  * struct parameter - parameter struct
