@@ -94,7 +94,7 @@ int percent_print(va_list ap, par_t *par)
 }
 
 /**
- * S_print - custom format specifier
+ * s_print - custom format specifier
  * @ap: argument pointer
  * @par: the parameters struct
  * Return: number chars printed

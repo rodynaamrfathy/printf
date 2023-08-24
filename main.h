@@ -11,48 +11,53 @@
 #define BUFFER_FLUSH -1
 #define NULL_str "(null)"
 #define PARAMS_IN {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
-#define CON_LOWERCASE   1
-#define CONVERT_LOWERCASE   1
-#define con_uppercase   2
+#define CON_LOWERCASE 1
+#define CONVERT_LOWERCASE 1
+#define con_uppercase 2
 #define CON_UNSIGNED 2
 #define CONVERT_UNSIGNED 2
 
+
 /**
- * struct parameter - parameter struct
- * @unsign: if unsigned value
- * @plus_flag: if plus_flag specified
- * @space_flag: if hashtag_flag specified
- * @hashtag_flag: if _flag specified
- * @zero_flag: if _flag specified
- * @minus_flag: if _flag specified
- * @width: field width specified
- * @precision: field precision specified
- * @high_modifier: if high_modifier specified
- * @low_modifier: if low_modifier specified
+ * struct parameter - Holds the format flags and
+ * modifiers for a conversion specifier
+ * @unsign: if the argument is unsigned
+ * @plus_flag: if the '+' flag is specified
+ * @space_flag: if the ' ' flag is specified
+ * @hashtag_flag: if the '#' flag is specified
+ * @zero_flag: if the '0' flag is specified
+ * @minus_flag: if the '-' flag is specified
+ * @width: the field width specified
+ * @precision: the field precision specified
+ * @high_modifier: if the 'l' or 'L' length modifier is specified
+ * @low_modifier: if the 'h' length modifier is specified
  */
 typedef struct parameter
 {
-        unsigned int unsign             : 1;
-        unsigned int plus_flag          : 1;
-        unsigned int space_flag         : 1;
-        unsigned int hashtag_flag       : 1;
-        unsigned int zero_flag          : 1;
-        unsigned int minus_flag         : 1;
-        unsigned int width;
-        unsigned int precision;
-        unsigned int high_modifier      : 1;
-        unsigned int low_modifier       : 1;
+		unsigned int unsign             : 1;
+		unsigned int plus_flag          : 1;
+		unsigned int space_flag         : 1;
+		unsigned int hashtag_flag       : 1;
+		unsigned int zero_flag          : 1;
+		unsigned int minus_flag         : 1;
+		unsigned int width;
+		unsigned int precision;
+		unsigned int high_modifier      : 1;
+		unsigned int low_modifier       : 1;
 } par_t;
+
 /**
- * struct specifier - struct token
- * @specifier: format token
- * @fun: function associated
+ * struct specifier - Holds the conversion specifier
+ * and its associated function
+ * @specifier: the format token
+ * @fun: the function associated with the specifier
  */
 typedef struct specifier
 {
-        char *specifier;
-        int (*fun)(va_list, par_t *);
+		char *specifier;
+		int (*fun)(va_list, par_t *);
 } specifier_t;
+
 int _put(char *s);
 int _putchar(int c);
 int char_print(va_list ap, par_t *par);
@@ -74,7 +79,6 @@ int get_fun_print(char *s, va_list ap, par_t *par);
 int get_flag(char *s, par_t *par);
 int get_modifier(char *s, par_t *par);
 char *get_width(char *s, par_t *par, va_list ap);
-int from_to_print(char *start, char *end, char *except);
 int _isdigit(int c);
 int _strlen(char *str);
 int number_print(char *str, par_t *par);
@@ -85,4 +89,3 @@ char *get_precision(char *p, par_t *par, va_list ap);
 int _printf(const char *format, ...);
 
 #endif
-
