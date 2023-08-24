@@ -34,16 +34,16 @@
  */
 typedef struct parameter
 {
-		unsigned int unsign             : 1;
-		unsigned int plus_flag          : 1;
-		unsigned int space_flag         : 1;
-		unsigned int hashtag_flag       : 1;
-		unsigned int zero_flag          : 1;
-		unsigned int minus_flag         : 1;
+		unsigned int unsign		: 1;
+		unsigned int plus_flag		: 1;
+		unsigned int space_flag		: 1;
+		unsigned int hashtag_flag	: 1;
+		unsigned int zero_flag		: 1;
+		unsigned int minus_flag		: 1;
 		unsigned int width;
 		unsigned int precision;
-		unsigned int high_modifier      : 1;
-		unsigned int low_modifier       : 1;
+		unsigned int high_modifier	: 1;
+		unsigned int low_modifier	: 1;
 } par_t;
 
 /**
@@ -79,6 +79,7 @@ int get_fun_print(char *s, va_list ap, par_t *par);
 int get_flag(char *s, par_t *par);
 int get_modifier(char *s, par_t *par);
 char *get_width(char *s, par_t *par, va_list ap);
+int from_to_print(char *start, char *end, char *except);
 int _isdigit(int c);
 int _strlen(char *str);
 int number_print(char *str, par_t *par);
