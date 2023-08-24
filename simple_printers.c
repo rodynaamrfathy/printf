@@ -53,8 +53,8 @@ int rot13_print(va_list ap, par_t *par)
 {
 	int i, index;
 	int count = 0;
-	char array[] =
-		"NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char arr[] =
+		"NOPQRSTUVWXYZABCDEFGHIJKLM		nopqrstuvwxyzabcdefghijklm";
 	char *a = va_arg(ap, char *);
 	(void)par;
 
@@ -66,7 +66,7 @@ int rot13_print(va_list ap, par_t *par)
 		    (a[i] >= 'a' && a[i] <= 'z'))
 		{
 			index = a[i] - 65;
-			count += _putchar(array[index]);
+			count += _putchar(arr[index]);
 		}
 		else
 			count += _putchar(a[i]);
