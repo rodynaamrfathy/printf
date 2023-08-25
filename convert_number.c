@@ -19,7 +19,7 @@ int hex_print(va_list ap, par_t *par)
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
 
-	str = convert(l, 16, CONVERT_UNSIGNED | CONVERT_LOWERCASE, par);
+	str = convert(l, 16, CONVERT_UNSIGNED | CON_LOWERCASE, par);
 	if (par->hashtag_flag && l)
 	{
 		*--str = 'x';
@@ -48,7 +48,7 @@ int HEX_print(va_list ap, par_t *par)
 	else
 		l = (unsigned int)va_arg(ap, unsigned int);
 
-	str = convert(l, 16, CON_UNSIGNED, par);
+	str = convert(l, 16, CONVERT_UNSIGNED, par);
 	if (par->hashtag_flag && l)
 	{
 		*--str = 'X';
